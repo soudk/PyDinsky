@@ -44,7 +44,7 @@ def rand_walker_data(n,T): # n=number of walkers, T= temperature
 	wlk = [] # init array of walkers
 	for i in range(int(num_walkers**0.5)):
 		for j in range(int(num_walkers**0.5)):
-			wlk.append(walker((i+1)*max(x)/5,(j+1)*max(y)/5))
+			wlk.append(walker((i+1)*(max(x)-min(x))/5,(j+1)*(max(y)-min(y))/5))
 	pos_x = []
 	pos_y = []
 	vel = []
@@ -70,7 +70,7 @@ def rand_walker_data(n,T): # n=number of walkers, T= temperature
 #----------------------------------------------------------------------------
 
 T = 1000.0 # Temperature
-num_walkers = 4
+num_walkers = 16
 x,y,v = rand_walker_data(num_walkers,T)
 
 for i in range(num_walkers):
