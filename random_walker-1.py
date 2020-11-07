@@ -36,39 +36,45 @@ def rand_b(n,T): # n is number of steps. T is temp
 			z.append([x,y]) 
 	z = np.asarray(z)
 	return z[:,0] # scaling the x-scale to allow use of integral steps
+
+def rand_walker_data(n,T): # n=number of walkers, T= temperature
+
+	x = [0,100] # sets range for x
+	y = [0,100] # sets range for y
+	wlk = [] # init array of walkers
+	for i in range(int(num_walkers**0.5)):
+		for j in range(int(num_walkers**0.5)):
+			wlk.append(walker((i+1)*max(x)/5,(j+1)*max(y)/5))
+	pos_x = []
+	pos_y = []
+	vel = []
+	z = rand_b(1000,T) # Generates array of random variables
 	
-	
+	for i in range(len(z)):
+		temp_x = np.zeros(num_walkers)
+		temp_y = np.zeros(num_walkers)
+		temp_z = np.zeros(num_walkers)
+		for j in range(num_walkers):
+			wlk[j].take_step(z[i])
+			temp_x[j] = wlk[j].x
+			temp_y[j] = wlk[j].y
+			temp_z[j] = wlk[j].v
+		pos_x.append(temp_x)
+		pos_y.append(temp_y)
+		vel.append(temp_z)	
+	pos_x = np.asarray(pos_x)
+	pos_y = np.asarray(pos_y)
+	vel   = np.asarray(vel)
+	return pos_x, pos_y, vel
+
 #----------------------------------------------------------------------------
 
 T = 1000.0 # Temperature
-
 num_walkers = 4
-x = [0,100]
-y = [0,100]
-wlk = []
-for i in range(int(num_walkers**0.5)):
-	for j in range(int(num_walkers**0.5)):
-		wlk.append(walker((i+1)*max(x)/5,(j+1)*max(y)/5))
-
-pos_x = []
-pos_y = []
-z = rand_b(1000,T)
-
-for i in range(len(z)):
-	temp_x = np.zeros(num_walkers)
-	temp_y = np.zeros(num_walkers)
-	for j in range(num_walkers):
-		wlk[j].take_step(z[i])
-		temp_x[j] = wlk[j].x
-		temp_y[j] = wlk[j].y
-	pos_x.append(temp_x)
-	pos_y.append(temp_y)
-
-pos_x = np.asarray(pos_x)
-pos_y = np.asarray(pos_y)
+x,y,v = rand_walker_data(num_walkers,T)
 
 for i in range(num_walkers):
-	plt.plot(pos_x[:,i],pos_y[:,i],'.')
+	plt.plot(x[:,i],y[:,i],'.')
 plt.show() 
 
 #----------------------------------------------------------------------------
