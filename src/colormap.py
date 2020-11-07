@@ -7,9 +7,10 @@ This is a temporary script file.
 
 import matplotlib as plt
 import seaborn as sns
+import numpy as np
+import get_temperature as get_t
 
-#import temperature of the day
-temp
+
 
 #temperature range limits
 cold_to_mid = 5
@@ -45,17 +46,17 @@ med_pal = sns.color_palette()
 hot_pal = sns.color_palette()
 """
 
-palettes = [cold_pal, med_pal, hot_pal]
+def FindPalette(cold_to_mid, mid_to_warm):
+    temp = get_t.get_temperature()
+    palettes = [cold_pal, med_pal, hot_pal]
 
-def FindPalette(temp, cold_to_mid, mid_to_warm):
     if temp<cold_to_mid:
         return palettes[0]
     if cold_to_mid<=temp and temp<mid_to_warm:
         return palettes[1]
     if mid_to_warm<=temp:
-        return palettes[3]
+        return palettes[2]
 
-my_pal = FindPalette(temp, cold_to_mid, mid_to_warm)
 
 
 
@@ -66,23 +67,24 @@ def color_assign(velocities, color_palette):
     nb_color = len(color_palette)   # Number of color in the palette
     min_velo = min(velocities)
     max_velo = max(velocities)
-    interval = (max_velo - min_velo))/nb_color
+    interval = (max_velo - min_velo)/nb_color
 
-    ranges = # Array containing [min_bound, max_bound, color
+    ranges = []
 
     for i in range(nb_color):
         ranges.append(
             [ min(velocities) + interval * i ,          # Minimum bound 
             min(velocities) + interval * (i + 1) ,      # Maximum bound
-            color_palette[i]                            # RGB Colour Code for the interval
+            color_palette[i] ]                          # RGB Colour Code for the interval
             )
 
 
     color_list = []
 
-    for i in velocities:
+    for velo in velocities:
         for j in ranges:
-            if i > j[0] and i <= j[1]:
-                color_list.append(j[3])
+            if velo > j[0] and velo <= j[1]:
+                color_list.append(j[2])
 
     return color_list
+
