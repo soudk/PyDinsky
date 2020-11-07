@@ -1,2 +1,2 @@
 # PyDinsky
-PyDinsky team for McGill Physics Hackathon 2020
+PyDinsky team repository for McGill Physics Hackathon 2020
