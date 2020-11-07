@@ -1,5 +1,5 @@
 
-import scipy.stats as ss
+#import scipy.stats as ss
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -49,4 +49,5 @@ for i in range(len(z)):
 
 pos= np.asarray(pos)
 plt.plot(pos[:,0],pos[:,1])
-plt.show()
+plt.show() 
+
