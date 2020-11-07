@@ -21,23 +21,21 @@ class walker: # Input is boltz rand. variable
 		return [self.x,self.y,self.v]
 #	def intx	
 
-def rand_b(n,T): # n is number of steps. T is temp
+def rand_b(T): # n is number of steps. T is temp
 
 	c = 4.8*10**(-4) # m/k_b
 	def boltz(v,T):
 		return (c*v/T)*np.exp(-c*v*v/2*T)
 		
-	z = [] # array of random variable (boltzmann-velocity) 
 	v_mp = np.sqrt(2*c*T)
-	for i in range(n):
-		x = np.random.rand()*v_mp*4. # setting max v value as 4 times most probable
-		y = np.random.rand()*1.2*boltz(v_mp,T) # setting max y limts as just little above the max of pdf
-		if boltz(x,T)>y:
-			z.append([x,y]) 
-	z = np.asarray(z)
-	return z[:,0] # scaling the x-scale to allow use of integral steps
+	x = np.random.rand()*v_mp*4. # setting max v value as 4 times most probable
+	y = np.random.rand()*1.2*boltz(v_mp,T) # setting max y limts as just little above the max of pdf
+	if boltz(x,T)>y:
+		return x # scaling the x-scale to allow use of integral steps
+	else:
+		return rand_b(T)
 
-def rand_walker_data(n,T): # n=number of walkers, T= temperature
+def rand_walker_data(n,T,n_steps): # n=number of walkers, T= temperature
 
 	x = [0,100] # sets range for x
 	y = [0,100] # sets range for y
@@ -48,14 +46,13 @@ def rand_walker_data(n,T): # n=number of walkers, T= temperature
 	pos_x = []
 	pos_y = []
 	vel = []
-	z = rand_b(1000,T) # Generates array of random variables
-	
-	for i in range(len(z)):
+
+	for i in range(n_steps):
 		temp_x = np.zeros(num_walkers)
 		temp_y = np.zeros(num_walkers)
 		temp_z = np.zeros(num_walkers)
 		for j in range(num_walkers):
-			wlk[j].take_step(z[i])
+			wlk[j].take_step(rand_b(T[j]))
 			temp_x[j] = wlk[j].x
 			temp_y[j] = wlk[j].y
 			temp_z[j] = wlk[j].v
@@ -69,9 +66,10 @@ def rand_walker_data(n,T): # n=number of walkers, T= temperature
 
 #----------------------------------------------------------------------------
 
-T = 1000.0 # Temperature
 num_walkers = 16
-x,y,v = rand_walker_data(num_walkers,T)
+num_steps = 1000
+T = np.linspace(100,1000,num_walkers) # Temperature
+x,y,v = rand_walker_data(num_walkers,T,num_steps)
 
 for i in range(num_walkers):
 	plt.plot(x[:,i],y[:,i],'.')
