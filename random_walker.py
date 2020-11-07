@@ -23,7 +23,8 @@ class walker: # Input is boltz rand. variable
 
 def rand_b(n,T): # n is number of steps. T is temp
 
-	c = 4.8*10**(-4) # m/k_b
+	#c = 4.8*10**(-4) # m/k_b for He
+        c = 3.3693*10**(-3) #m/k_b for N2
 	def boltz(v,T):
 		return (c*v/T)*np.exp(-c*v*v/2*T)
 		
