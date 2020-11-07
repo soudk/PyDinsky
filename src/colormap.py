@@ -59,3 +59,30 @@ my_pal = FindPalette(temp, cold_to_mid, mid_to_warm)
 
 
 
+def color_assign(velocities, color_palette):
+    '''Takes an array with velocities for all of the particle and outputs the colours mathcing the velocities. '''
+    
+    nb_velo = len(velocities)       # Number of elements in the array containing the velocities
+    nb_color = len(color_palette)   # Number of color in the palette
+    min_velo = min(velocities)
+    max_velo = max(velocities)
+    interval = (max_velo - min_velo))/nb_color
+
+    ranges = # Array containing [min_bound, max_bound, color
+
+    for i in range(nb_color):
+        ranges.append(
+            [ min(velocities) + interval * i ,          # Minimum bound 
+            min(velocities) + interval * (i + 1) ,      # Maximum bound
+            color_palette[i]                            # RGB Colour Code for the interval
+            )
+
+
+    color_list = []
+
+    for i in velocities:
+        for j in ranges:
+            if i > j[0] and i <= j[1]:
+                color_list.append(j[3])
+
+    return color_list
