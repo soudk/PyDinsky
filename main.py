@@ -28,9 +28,9 @@ v = np.random.randn(1000)
 
 
 # ADD INITIAL PLOT - SEE BOKEH DOCS -- CHANGE THIS
-size = 1
-plot.line(x, y, color = 'grey')
-plot.scatter(x, y, size=size, color=color)
+size = 5
+plot.line(x, y, color = 'grey', line_alpha = 0.2)
+plot.scatter(x, y, size=size, color=color, fill_alpha = 0.5)
 
 #plot.line('x', 'y', source = source_zip1, line_color = "blue", legend_label = "Zipcode 1")
 
@@ -61,4 +61,4 @@ select_cities.on_change('value', update_city)
 """
 
 # FORMAT/CREATE THE DOCUMENT TO RENDER
-curdoc().add_root(column(select_zip1, select_zip2, plot))
+curdoc().add_root(column(plot))
