@@ -8,21 +8,20 @@ We're creating generative art with user input and elements of randomness. Our na
 The phenomena of heat diffusion is somewhat familiar to all. Indeed temperature fluctuations and "movement" is part of our everyday experience. A phenomena inheretly linked to temperature and diffusion is that of random walks. This is NOT a concept trivially known to all. With our project, we chose to represent artistically those aforementioned random walks on the stage of the earth. Their trajectories are based on the live local temperatures at different cities in the world. 
 
 ## The "Physics"
-The Physics that out project includes is based around the velocity for a given temperature following Boltzmann distribution. Every time you generate an image it will be different because we implement random walk methods that follow this **Boltzmann distribution** and are seeded with actual temperature from a given city.
+The Physics of our project is based around the velocity for a given temperature following Boltzmann distribution. Every image you generate will be different because we implement random walk methods that follow this **Boltzmann distribution** and are seeded with actual temperature from a given city.
 
 ![alt text](https://github.com/soudk/PyDinsky/blob/main/distribution.png)
 
-Random variables are sampled from this distribution that depends on the temperature of the region to define the step size at each iteration. 
-
+Random variables are sampled from this distribution, with the step size at each iteration depending on the temperature of the city. 
 
 ![alt text](https://github.com/soudk/PyDinsky/blob/main/temp_map.png)
 
-In addition to this, we also implement a routine to approximately extrapolate temperatures over the entire x-y range to obtain temperature for each position and us this to modify the distribution during run. We then plot the trace of walkers using a custom designed color scheme that matches the given temperature ranges.
+Additionally, we implement a routine to approximately extrapolate temperatures over the entire x-y range to obtain temperature at each position on the walk and use this to modify the distribution during run. We then plot the trace of the walkers using a custom-designed color scheme that accords with the given temperature ranges.
 
+## Use Your Favorite Cities to Generate Images
+The color schemes used for the walkers are generated using the current temperature of the cities of your choice, pulled from the [OpenWeather](https://openweathermap.org/) API. A cold scheme for a colder day, a warm scheme for a blazing hot day, and a medium scheme for everything in between.
 
-## Use your favorite cities to generate images
-The color schemes used for the walkers are generated using the current temperature of the cities of your choice, pulled from the [OpenWeather](https://openweathermap.org/) API. A cold scheme for a colder day and a warm scheme for a blazing hot day.
-
+## Try It Out
 Web app available at: https://pydinsky.herokuapp.com/main-bokeh
 
 Welcome to the paartyyy
