@@ -37,7 +37,7 @@ we used the [Bokeh](https://bokeh.org/) python package to generate an interactiv
 
 ## The web app
 
-On average walkers from hotter cities are more likely to spread out over a wider area due to the wider Boltzmann distribution of velocities. Each input city's longitude and latitude are projected onto the X-Y plane, and this is where the walker begins. Walkers that hit the boundary walls are reflected to allow for a densely populated figure. On average walkers from hotter cities are more likely to spread out over a wider area due to the wider Boltzmann distribution of velocities.
+On average, walkers from hotter cities are more likely to spread out over a larger area due to the wider Boltzmann distribution of velocities. Further, each input city's longitude and latitude are projected onto the X-Y plane, and this is where the walker begins. Walkers that hit the boundary walls are reflected to allow for a densely populated figure. 
 
 You can choose which cities to display and we will query their live temperature as the seed for the art. Click on the legend to show/hide cities and build your ideal *aesthetic*. Each plot generated is unique to your mouse clicks, and subject to current global weather patterns. Have fun!   
 
