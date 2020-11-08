@@ -52,6 +52,7 @@ def lon_lat(data):
 CityName = "Montreal"
 Country = "Canada"
 T = [gt.get_temperature(CityName, Country)]
+#T = [300.0] #testing
 positions =[[29.6, 75.2]] #Montreal - hard coded, because of the accent screwing things up.
 #positions = lon_lat(countries[coords.index(CityName)]) #Montreal - hard coded
 #for i in range(num_walkers):
@@ -63,15 +64,34 @@ x,y,v,tmap = rw.rand_walker_data(n_grid,T,num_steps,num_walkers,positions)
 today = date.today()
 date = today.strftime("%B %d, %Y")
 
+def rgb_to_hex(rgb):
+    return '%02x%02x%02x' % rgb
+
+
 #PLOTTING
 T_cel = round(T[0]-273.15, 1) #temperature in celsius for use in legends etc...
 plot = figure(title = "A Random Walk: "+CityName+", "+ Country +" on "+ date +" , "+str(T_cel)+" "+chr(176)+"C", x_axis_label = "X Position", y_axis_label = "Y Position")
 size = 10
 color_list = cm.color_assign(v[:,0], cm.FindPalette(T[0]))
+color_list = np.asarray(color_list)
+#print(color_list)
+color_list *= 255
+#print(color_list)
+color_list = np.floor(color_list)
+color_list.astype(int)
+
+color_hex = []
+for c in color_list:
+    c.astype(int)
+    color_hex.append(rgb_to_hex((c[0].astype(int), c[1].astype(int), c[2].astype(int))))
+
+
 plot.line(x[:,0], y[:,0], color = 'grey', line_alpha = 0.2) #colour here should be the average colour
 plot.circle(0, 0, size=0.00000001, color= "#ffffff", legend="Cities & Temperatures") #for the legend title
-plot.scatter(x[:,0], y[:,0], size=size, color=color_list, fill_alpha = 0.3, legend_label=CityName+": "+str(T_cel)+chr(176)+"C")
+plot.scatter(x[:,0], y[:,0], size=size, color=color_hex, fill_alpha = 0.3, legend_label=CityName+": "+str(T_cel)+chr(176)+"C")
 plot.legend.click_policy="hide"
+
+
 
 # HANDLE BOKEH CALLBACKS ... 
 
@@ -80,6 +100,7 @@ def update_city1(attr, old, new):
     CityName = dropdown_1.value
     Country = countries[cities.index(CityName)]
     T = [gt.get_temperature(CityName, Country)]
+    #T = [300.0]
     T_cel = round(T[0]-273.15, 1)
     
     #print("Temperature: ", T[0])  #testing
@@ -90,19 +111,34 @@ def update_city1(attr, old, new):
     #print("------------------------------------", coords[cities.index(CityName)])
     positions = lon_lat([coords[cities.index(CityName)]['lon'], coords[cities.index(CityName)]['lat']])
     positions = positions
-    print(positions)
+    
     #for i in range(num_walkers):
     #    positions.append([int(np.random.rand()*100),int(np.random.rand()*100)])
+    
     positions = np.asanyarray(positions)
     x,y,v,tmap = rw.rand_walker_data(n_grid,T,num_steps,num_walkers,positions)
     
-    color_list = cm.color_assign(v[:,0], cm.FindPalette(T[0])) #from cm
-    #print(color_list)
+    color_list = cm.color_assign(v[:,0], cm.FindPalette(T[0]))#from cm
 
     plot.line(x[:,0], y[:,0], color = 'grey', line_alpha = 0.2)
+
+    color_list = np.asarray(color_list)
+    #print(color_list)
+    color_list *= 255
+    #print(color_list)
+    color_list = np.floor(color_list)
+    color_list.astype(int)
     
+    color_hex = []
+    
+    for c in color_list:
+        c.astype(int)
+        color_hex.append(rgb_to_hex((c[0].astype(int), c[1].astype(int), c[2].astype(int))))
+    
+    #print(color_hex)
+
     #Bokeh scatter plot - look into color argument
-    plot.scatter(x[:,0], y[:,0], size=size, color=color_list, fill_alpha = 0.7, legend_label=CityName+": "+str(T_cel)+chr(176)+"C")
+    plot.scatter(x[:,0], y[:,0], size=size, color=color_hex, fill_alpha = 0.7, legend_label=CityName+": "+str(T_cel)+chr(176)+"C")
 
     return 0
 
