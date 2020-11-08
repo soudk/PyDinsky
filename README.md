@@ -42,7 +42,9 @@ You can choose which cities to display, and we will query their live temperature
 ## Try It Out
 Web app available at: https://pydinsky.herokuapp.com/main-bokeh
 
-[](example_webapp.png)![Exmaple of web app functionality](https://github.com/soudk/PyDinsky/blob/main/data/example_webapp.png?raw=true)
+<p align="center">
+  <a href="https://pydinsky.herokuapp.com/main-bokeh" target="blank"><img width="460" height="400" src="https://github.com/soudk/PyDinsky/blob/main/data/example_webapp.png" alt="Example of th web app interface"></a>
+</p>
 
 Welcome to the party!
 
