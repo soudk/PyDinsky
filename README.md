@@ -40,10 +40,10 @@ On average walkers from hotter cities are more likely to spread out over a wider
 You can choose which cities to display, and we will query their live temperature as the seed for the art. Click on the legend to show/hide cities and build your art. Each plot generated is unique to your mouse clicks, subject to the current global weather patterns. Have fun!   
 
 ## Try It Out
-Check out the web app <a href="https://pydinsky.herokuapp.com/main-bokeh" target="_blank">here.</a> 
+Check out the web app <a href="https://pydinsky.herokuapp.com/main-bokeh" target="_blank">here</a>. 
 
 <p align="center">
-  <a href="https://pydinsky.herokuapp.com/main-bokeh" target="_blank"><img width="460" height="400" src="https://github.com/soudk/PyDinsky/blob/main/data/example_webapp.png" alt="Example of th web app interface"></a>
+  <a href="https://pydinsky.herokuapp.com/main-bokeh" target="_blank"><img width="460" height="460" src="https://github.com/soudk/PyDinsky/blob/main/data/example_webapp.png" alt="Example of the web app interface"></a>
 </p>
 
 Welcome to the party!
