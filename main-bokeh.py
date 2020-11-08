@@ -1,6 +1,6 @@
 from bokeh.plotting import figure, curdoc, show
 from bokeh.layouts import column
-from bokeh.models import ColumnDataSource, Select
+from bokeh.models import ColumnDataSource, Select, CustomJS, Rect
 from bokeh.palettes import magma  #actually going to use cutom pallete
 from bokeh.themes import built_in_themes
 
@@ -26,9 +26,9 @@ n_grid = 100
 with open('data/shorter_city_list.json', 'r') as json_file:
     data = json.load(json_file)
 
-cities=[]
-countries=[]
-coords=[]
+cities=["none"]
+countries=["none"]
+coords=["none"]
 #What data do we want
 for d in data:
         cities.append(d["name"])
@@ -54,11 +54,13 @@ today = date.today()
 date = today.strftime("%B %d, %Y")
 
 #PLOTTING
-plot = figure(title = "A Random Walk: "+CityName+", "+ Country +" on "+ date +" , "+str(round(T[0]-273.15, 1))+" "+chr(176)+"C", x_axis_label = "X Position", y_axis_label = "Y Position")
+T_cel = round(T[0]-273.15, 1) #temperature in celsius for use in legends etc...
+plot = figure(title = "A Random Walk: "+CityName+", "+ Country +" on "+ date +" , "+str(T_cel)+" "+chr(176)+"C", x_axis_label = "X Position", y_axis_label = "Y Position")
 size = 10
 color_list = cm.color_assign(v[:,0], cm.FindPalette(T[0]))
 plot.line(x[:,0], y[:,0], color = 'grey', line_alpha = 0.2) #colour here should be the average colour
-plot.scatter(x[:,0], y[:,0], size=size, color=color_list, fill_alpha = 0.3)
+plot.circle(0, 0, size=0.00000001, color= "#ffffff", legend="Cities & Temperatures") #for the legend title
+plot.scatter(x[:,0], y[:,0], size=size, color=color_list, fill_alpha = 0.3, legend_label=CityName+": "+str(T_cel)+chr(176)+"C")
 
 
 # HANDLE BOKEH CALLBACKS ... 
@@ -68,6 +70,7 @@ def update_city1(attr, old, new):
     CityName = dropdown_1.value
     Country = countries[cities.index(CityName)]
     T = [gt.get_temperature(CityName, Country)]
+    T_cel = round(T[0]-273.15, 1)
     
     tit = "A Random Walk: "+CityName+", "+ Country +" on "+ date +", "+str(round(T[0]-273.15, 1))+" "+chr(176)+"C"
     plot.title.text = tit
@@ -78,14 +81,15 @@ def update_city1(attr, old, new):
     x,y,v,tmap = rw.rand_walker_data(n_grid,T,num_steps,num_walkers,positions)
     color_list = cm.color_assign(v[:,0], cm.FindPalette(T[0])) #from cm
     plot.line(x[:,0], y[:,0], color = 'grey', line_alpha = 0.2)
-    plot.scatter(x[:,0], y[:,0], size=size, color=color_list, fill_alpha = 0.7)
+    plot.scatter(x[:,0], y[:,0], size=size, color=color_list, fill_alpha = 0.7, legend_label=CityName+": "+str(T_cel)+chr(176)+"C")
     return 0
 
 
 # CREATE DROPDOWN WIDGET
-dropdown_1 = Select(title = "city", options = cities, value = None)
+dropdown_1 = Select(title = "add city to plot", options = cities, value = None)
 dropdown_1.on_change('value', update_city1)
 
 
 # FORMAT/CREATE THE DOCUMENT TO RENDER
 curdoc().add_root(column(dropdown_1, plot))
+
