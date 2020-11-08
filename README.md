@@ -1,7 +1,7 @@
 # PyDinsky
 PyDinsky team repository for McGill Physics Hackathon 2020
 
-## Why Pydinski
+## Why Pydinsky
 We're creating generative art with user input and elements of randomness. Our name is a play on [Wassily Kandinsky](https://en.wikipedia.org/wiki/Wassily_Kandinsky), a Russian painter who pioneered abstract art and used bold colors liberally in his work. Prior to Kandinsky's contributions to mainstream aesthetic theories, what we now call abstract art was rejected as a true art form. To this day, there is a stigma around abstract art. 
 
 <p align="center">
