@@ -15,85 +15,32 @@ import colormap as cm
 import random_walker as rw
 import get_temperature as gt
 
-#DARK MODE (SICK - DISGUSTING)
-#curdoc().theme = 'dark_minimal'
-
 
 # GENERATE STARTING GRAPHS
-
-source_cities = ColumnDataSource(data = {
-    'x': [0],
-    'y': [0]
-})
-
-
-
-# HANDLE CALLBACKS ... user choice of incident_zip from dropdown
-
-def update_city(attr, old, new):
-    #after an update to the city list
-    #for i in range(len(cities)):
-        #color_list = cm.color_assign(v[:,i], cm.FindPalette(5, 15, temperatures[i])) #from cm
-        #plot.line(x[:,i], y[:,i], color = 'grey', line_alpha = 0.2)
-        #plot.scatter(x[:,i], y[:,i], size=size, color=magma(256), fill_alpha = 0.7)
-    #change x, y data values
-    #source_zip1.data = {
-    #        'x': df_zip1['month'],
-    #        'y': df_zip1['hours_elapsed']
-    #}
-    return 0
-
-# list of zipcodes to display in dropdown
+num_walkers = 1
+num_steps = 3000
+n_grid = 100
 
 
 #READ JSON DATA
-with open('data/city_list.json', 'r') as json_file:
+with open('data/shorter_city_list.json', 'r') as json_file:
     data = json.load(json_file)
 
 cities=[]
+countries=[]
+coords=[]
 #What data do we want
 for d in data:
-    if d["country"]=="Canada":
         cities.append(d["name"])
+        countries.append(d["country"])
+        coords.append(d["coord"])
 
-# CREATE DROPDOWN WIDGET
-select_city_1 = Select(title = "city", options = cities, value = None)
-select_city_2 = Select(title = "city", options = cities, value = None)
-select_city_3 = Select(title = "city", options = cities, value = None)
-select_city_4 = Select(title = "city", options = cities, value = None)
+#print(data[0]) #testing
 
-select_city_1.on_change('value', update_city)
-select_city_2.on_change('value', update_city)
-select_city_3.on_change('value', update_city)
-select_city_4.on_change('value', update_city)
-
-
-CityName = "Montreal" #replace this with input from temperature / dropdown box
-today = date.today()
-date = today.strftime("%B %d, %Y")
-
-#WALKERS
-#num_walkers = 1
-#num_steps = 1000
-#n_grid = num_steps*10
-#T = np.linspace(100,1000,num_walkers) # Temperature
-#x,y,v = rw.rand_walker_data(n_grid,T,num_steps,num_walkers)
-
-#cities = ["Toronto"]
-#country= ["Canada"]
-#temperatures=[]
-#for i, city in enumerate(cities): 
-#    temperatures.append(gt.get_temperature(city, country[i]))
-
-
-######################################################
 
 #INITIAL PLOT - ALWAYS MONTREAL
 #WALKERS
-num_walkers = 1
-num_steps = 1000
-n_grid = 100
-CityName = "Yellowknife"
+CityName = "Montreal"
 Country = "Canada"
 T = [gt.get_temperature(CityName, Country)]
 positions = []
@@ -103,15 +50,42 @@ positions = np.asanyarray(positions)
 x,y,v,tmap = rw.rand_walker_data(n_grid,T,num_steps,num_walkers,positions)
 
 
-plot = figure(title = "A Random Walk: "+CityName+", "+ Country +" on "+ date +" , "+str(round(T[0]-273.15, 1))+" "+chr(176)+"C", x_axis_label = "X Position", y_axis_label = "Y Position")
+today = date.today()
+date = today.strftime("%B %d, %Y")
 
 #PLOTTING
+plot = figure(title = "A Random Walk: "+CityName+", "+ Country +" on "+ date +" , "+str(round(T[0]-273.15, 1))+" "+chr(176)+"C", x_axis_label = "X Position", y_axis_label = "Y Position")
 size = 10
 color_list = cm.color_assign(v[:,0], cm.FindPalette(T[0]))
 plot.line(x[:,0], y[:,0], color = 'grey', line_alpha = 0.2) #colour here should be the average colour
-plot.scatter(x[:,0], y[:,0], size=size, color=color_list, fill_alpha = 0.7)
+plot.scatter(x[:,0], y[:,0], size=size, color=color_list, fill_alpha = 0.3)
 
+
+# HANDLE BOKEH CALLBACKS ... 
+
+def update_city1(attr, old, new):
+    #after an update to the city list
+    CityName = dropdown_1.value
+    Country = countries[cities.index(CityName)]
+    T = [gt.get_temperature(CityName, Country)]
+    
+    tit = "A Random Walk: "+CityName+", "+ Country +" on "+ date +", "+str(round(T[0]-273.15, 1))+" "+chr(176)+"C"
+    plot.title.text = tit
+    positions = []
+    for i in range(num_walkers):
+        positions.append([int(np.random.rand()*100),int(np.random.rand()*100)])
+    positions = np.asanyarray(positions)
+    x,y,v,tmap = rw.rand_walker_data(n_grid,T,num_steps,num_walkers,positions)
+    color_list = cm.color_assign(v[:,0], cm.FindPalette(T[0])) #from cm
+    plot.line(x[:,0], y[:,0], color = 'grey', line_alpha = 0.2)
+    plot.scatter(x[:,0], y[:,0], size=size, color=color_list, fill_alpha = 0.7)
+    return 0
+
+
+# CREATE DROPDOWN WIDGET
+dropdown_1 = Select(title = "city", options = cities, value = None)
+dropdown_1.on_change('value', update_city1)
 
 
 # FORMAT/CREATE THE DOCUMENT TO RENDER
-curdoc().add_root(column(select_city_1, select_city_2, select_city_3, select_city_4, plot))
+curdoc().add_root(column(dropdown_1, plot))
