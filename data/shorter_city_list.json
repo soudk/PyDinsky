@@ -53,13 +53,13 @@
         }
     },
     {
-        "id": 4276816,
+        "id": 6094817,
         "name": "Ottawa",
-        "state": "KS",
-        "country": "US",
+        "state": "",
+        "country": "CA",
         "coord": {
-            "lon": -95.267754,
-            "lat": 38.61557
+            "lon": -75.69812,
+            "lat": 45.411171
         }
     },
 
