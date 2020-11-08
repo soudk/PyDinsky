@@ -4,17 +4,26 @@ import colormap as cm
 import random_walker as rw
 
 
-num_walkers = 4
-T = np.linspace(100,1000,num_walkers) # Temperature
+num_walkers = 16
+T = np.linspace(250,320,num_walkers) # Temperature
 num_steps = 1000
 
-#print(x_data[:, 0])
+positions = []
 
-x, y, v = rw.rand_walker_data(
+#print(x_data[:, 0])
+for i in range(num_walkers):
+    positions.append([int(np.random.rand()*100),int(np.random.rand()*100)])
+positions = np.asanyarray(positions)
+
+positions
+
+x, y, v, tmap = rw.rand_walker_data(
     100,            # Bounds for plot
     T,              # Temperature array
     num_steps,      # Number of steps
-    num_walkers)    # Number of walkers
+    num_walkers,    # Number of walkers
+    positions)
+
 
 
 
@@ -28,13 +37,16 @@ fig, ax1 = plt.subplots( figsize = (15,10) , dpi = 75)
 ax1.clear()
 ax1.cla()
 
+
+
 for i in range(num_walkers):
     # We truncate the arrays to prevent the "weird bug", that Christian cannot figure out. It's all his fault really...
-    color_list = cm.color_assign(v[:,i], cm.FindPalette(5, 15, temperatures[i]))
+    print("Temperatures:", T[i])
+    color_list = cm.color_assign(v[:,i], cm.FindPalette(T[i]))
     plt.scatter(
         x[:,i][:num_steps - 1], 
         y[:,i][:num_steps - 1], 
-        s = 10,
+        s = 50,
         c = np.array(color_list)[:num_steps - 1], 
         alpha= 0.5)
 
@@ -56,9 +68,9 @@ plt.tick_params(
     labelleft = False) # labels along the bottom edge are off
 ax = plt.gca()
 
-ax.set_facecolor('xkcd:grey')
+ax.set_facecolor((.2, .2, .2))
 
-fig.patch.set_facecolor('xkcd:grey')
+fig.patch.set_facecolor((.2, .2, .2))
 
 plt.show()
 
