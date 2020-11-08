@@ -76,7 +76,7 @@ def temp_map(n):
 	
 num_walkers = 16
 num_steps = 1000
-n_grid = num_steps*10
+n_grid = 100
 T = np.linspace(100,1000,num_walkers) # Temperature
 tmap = temp_map(n_grid) 
 x,y,v = rand_walker_data(n_grid,T,num_steps,num_walkers)
