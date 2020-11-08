@@ -7,7 +7,7 @@ Web app available at: https://pydinsky.herokuapp.com/main-bokeh
 * [Why PyDinsky?](#section1)
 * [The Concept](#section2)
 * [The Physics](#section3)
-* [Favourite City? Make custom and personal art"](#section4)
+* [Favourite City? Make custom and personal art](#section4)
 * [The Web App](#section5)
 
 ## <a name="section1"></a> Why Pydinsky?
