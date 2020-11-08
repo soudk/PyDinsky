@@ -6,9 +6,9 @@ Web app available at: https://pydinsky.herokuapp.com/main-bokeh
 ### Table of Content:
 * [Why PyDinsky?](#section1)
 * [The Concept](#section2)
-* [The "Physics"](#section3)
+* [The Physics](#section3)
 * [Favourite City? Make custom and personal art"](#section4)
-* [The Web App"](#section5)
+* [The Web App](#section5)
 
 ## <a name="section1"></a> Why Pydinsky?
 We're creating generative art with user input and elements of randomness. Our name is a play on [Wassily Kandinsky](https://en.wikipedia.org/wiki/Wassily_Kandinsky), a Russian painter who pioneered abstract art and used bold colors liberally in his work. Prior to Kandinsky's contributions to mainstream aesthetic theories, what we now call abstract art was rejected as a true art form. To this day, there is a stigma around abstract art. 
