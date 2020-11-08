@@ -41,7 +41,6 @@ ax1.cla()
 
 for i in range(num_walkers):
     # We truncate the arrays to prevent the "weird bug", that Christian cannot figure out. It's all his fault really...
-    print("Temperatures:", T[i])
     color_list = cm.color_assign(v[:,i], cm.FindPalette(T[i]))
     plt.scatter(
         x[:,i][:num_steps - 1], 
