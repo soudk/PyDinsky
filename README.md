@@ -31,6 +31,8 @@ Additionally, we implement a routine to approximately extrapolate temperatures o
 ## Use Your Favorite Cities to Generate Images
 The color schemes used for the walkers are generated using the current temperature of the cities of your choice, pulled from the [OpenWeather](https://openweathermap.org/) API. A cold scheme for a colder day, a warm scheme for a blazing hot day, and a medium scheme for everything in between.
 
+We used the [Bokeh](https://bokeh.org/) python package to generate an interactive web app. You can pick from a list of cities and the weather API is queried for the current temperature. The website is the deployed using [Heroku](https://dashboard.heroku.com/). You can now add as many cities as you like! 
+
 ## Try It Out
 Web app available at: https://pydinsky.herokuapp.com/main-bokeh
 
