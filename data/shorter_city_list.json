@@ -1,0 +1,282 @@
+[
+    {
+        "id": 6167865,
+        "name": "Toronto",
+        "state": "",
+        "country": "CA",
+        "coord": {
+            "lon": -79.416298,
+            "lat": 43.700111
+        }
+    },
+
+    {
+        "id": 6077246,
+        "name": "Montréal",
+        "state": "",
+        "country": "CA",
+        "coord": {
+            "lon": -73.68248,
+            "lat": 45.50008
+        }
+    },
+
+    {
+        "id": 6173331,
+        "name": "Vancouver",
+        "state": "",
+        "country": "CA",
+        "coord": {
+            "lon": -123.119339,
+            "lat": 49.24966
+        }
+    },
+
+    {
+        "id": 6183235,
+        "name": "Winnipeg",
+        "state": "",
+        "country": "CA",
+        "coord": {
+            "lon": -97.147041,
+            "lat": 49.884399
+        }
+    },
+    {
+        "id": 6138517,
+        "name": "Saint John",
+        "state": "",
+        "country": "CA",
+        "coord": {
+            "lon": -66.067657,
+            "lat": 45.272709
+        }
+    },
+    {
+        "id": 4276816,
+        "name": "Ottawa",
+        "state": "KS",
+        "country": "US",
+        "coord": {
+            "lon": -95.267754,
+            "lat": 38.61557
+        }
+    },
+
+    {
+        "id": 6119109,
+        "name": "Regina",
+        "state": "",
+        "country": "CA",
+        "coord": {
+            "lon": -104.617798,
+            "lat": 50.450081
+        }
+    },
+
+    {
+        "id": 5946768,
+        "name": "Edmonton",
+        "state": "",
+        "country": "CA",
+        "coord": {
+            "lon": -113.468712,
+            "lat": 53.55014
+        }
+    },
+
+    {
+        "id": 6115047,
+        "name": "Québec",
+        "state": "",
+        "country": "CA",
+        "coord": {
+            "lon": -71.999069,
+            "lat": 52.000172
+        }
+    },
+    {
+        "id": 5957776,
+        "name": "Fredericton",
+        "state": "",
+        "country": "CA",
+        "coord": {
+            "lon": -66.665581,
+            "lat": 45.945412
+        }
+    },
+
+    {
+        "id": 287286,
+        "name": "Muscat",
+        "state": "",
+        "country": "OM",
+        "coord": {
+            "lon": 58.592201,
+            "lat": 23.613871
+        }
+    },
+
+    {
+        "id": 2639996,
+        "name": "Portsmouth",
+        "state": "",
+        "country": "GB",
+        "coord": {
+            "lon": -1.09125,
+            "lat": 50.798988
+        }
+    },
+
+    {
+        "id": 6062069,
+        "name": "Lunenburg",
+        "state": "",
+        "country": "CA",
+        "coord": {
+            "lon": -64.315453,
+            "lat": 44.38345
+        }
+    },
+
+    {
+        "id": 2193732,
+        "name": "Auckland",
+        "state": "",
+        "country": "NZ",
+        "coord": {
+            "lon": 174.743042,
+            "lat": -36.85582
+        }
+    },
+
+    {
+        "id": 1733046,
+        "name": "Kuala Lumpur",
+        "state": "",
+        "country": "MY",
+        "coord": {
+            "lon": 101.686531,
+            "lat": 3.14309
+        }
+    },
+
+    {
+        "id": 5809844,
+        "name": "Seattle",
+        "state": "WA",
+        "country": "US",
+        "coord": {
+            "lon": -122.332069,
+            "lat": 47.606209
+        }
+    },
+    {
+        "id": 2973783,
+        "name": "Strasbourg",
+        "state": "",
+        "country": "FR",
+        "coord": {
+            "lon": 7.74296,
+            "lat": 48.58342
+        }
+    },
+
+    {
+        "id": 1275339,
+        "name": "Mumbai",
+        "state": "",
+        "country": "IN",
+        "coord": {
+            "lon": 72.847939,
+            "lat": 19.01441
+        }
+    },
+
+    {
+        "id": 360630,
+        "name": "Cairo",
+        "state": "",
+        "country": "EG",
+        "coord": {
+            "lon": 31.24967,
+            "lat": 30.06263
+        }
+    },
+
+    {
+        "id": 2968815,
+        "name": "Paris",
+        "state": "",
+        "country": "FR",
+        "coord": {
+            "lon": 2.3486,
+            "lat": 48.853401
+        }
+    },
+
+    {
+        "id": 1850147,
+        "name": "Tokyo",
+        "state": "",
+        "country": "JP",
+        "coord": {
+            "lon": 139.691711,
+            "lat": 35.689499
+        }
+    },
+
+    {
+        "id": 2147714,
+        "name": "Sydney",
+        "state": "",
+        "country": "AU",
+        "coord": {
+            "lon": 151.207321,
+            "lat": -33.867851
+        }
+    },
+
+    {
+        "id": 160263,
+        "name": "Dar es Salaam",
+        "state": "",
+        "country": "TZ",
+        "coord": {
+            "lon": 39.269508,
+            "lat": -6.82349
+        }
+    },
+    {
+        "id": 6139153,
+        "name": "Saint-Tite",
+        "state": "",
+        "country": "CA",
+        "coord": {
+            "lon": -72.56411,
+            "lat": 46.727558
+        }
+    },
+
+    {
+        "id": 5999042,
+        "name": "Lac-aux-Sables",
+        "state": "",
+        "country": "CA",
+        "coord": {
+            "lon": -72.399101,
+            "lat": 46.86676
+        }
+    },
+    {
+        "id": 2553604,
+        "name": "Casablanca",
+        "state": "",
+        "country": "MA",
+        "coord": {
+            "lon": -7.61916,
+            "lat": 33.592781
+        }
+    }
+
+]
