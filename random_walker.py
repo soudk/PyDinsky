@@ -10,35 +10,37 @@ class walker: # Input is boltz rand. variable
 		self.x = x
 		self.y = y
 		self.v = 0.0
-	def take_step(self,v):	
+	def take_step(self,v,xx,yy):	
 		self.v = v
 		t = np.random.rand()*2*np.pi
 		x_step = np.cos(t)
 		y_step = np.sin(t)
 		self.x += v*x_step
+		if self.x < xx[0] or self.x > xx[1]:
+			self.x -= 2*v*x_step		
 		self.y += v*y_step
+		if self.y < yy[0] or self.y > yy[1]:
+			self.y -= 2*v*y_step		
 	def sample(self):
 		return [self.x,self.y,self.v]
 #	def intx	
 
-def rand_b(n,T): # n is number of steps. T is temp
+def rand_b(T): # n is number of steps. T is temp
 
 	#c = 4.8*10**(-4) # m/k_b for He
-        c = 3.3693*10**(-3) #m/k_b for N2
+	c = 3.3693*10**(-3) #m/k_b for N2
 	def boltz(v,T):
 		return (c*v/T)*np.exp(-c*v*v/2*T)
 		
-	z = [] # array of random variable (boltzmann-velocity) 
-	v_mp = np.sqrt(2*c*T)
-	for i in range(n):
-		x = np.random.rand()*v_mp*4. # setting max v value as 4 times most probable
-		y = np.random.rand()*1.2*boltz(v_mp,T) # setting max y limts as just little above the max of pdf
-		if boltz(x,T)>y:
-			z.append([x,y]) 
-	z = np.asarray(z)
-	return z[:,0] # scaling the x-scale to allow use of integral steps
+	v_mp = np.sqrt(2*c*T) # most probable velocity
+	x = np.random.rand()*v_mp*4. # setting max v value as 4 times most probable
+	y = np.random.rand()*1.2*boltz(v_mp,T) # setting max y limts as just little above the max of pdf
+	if boltz(x,T)>y:
+		return x # scaling the x-scale to allow use of integral steps
+	else:
+		return rand_b(T)
 
-def rand_walker_data(n,T): # n=number of walkers, T= temperature
+def rand_walker_data(n,T,n_steps): # n=number of walkers, T= temperature
 
 	x = [0,100] # sets range for x
 	y = [0,100] # sets range for y
@@ -49,14 +51,13 @@ def rand_walker_data(n,T): # n=number of walkers, T= temperature
 	pos_x = []
 	pos_y = []
 	vel = []
-	z = rand_b(1000,T) # Generates array of random variables
-	
-	for i in range(len(z)):
+
+	for i in range(n_steps):
 		temp_x = np.zeros(num_walkers)
 		temp_y = np.zeros(num_walkers)
 		temp_z = np.zeros(num_walkers)
 		for j in range(num_walkers):
-			wlk[j].take_step(z[i])
+			wlk[j].take_step(rand_b(T[j]),x,y)
 			temp_x[j] = wlk[j].x
 			temp_y[j] = wlk[j].y
 			temp_z[j] = wlk[j].v
@@ -70,13 +71,13 @@ def rand_walker_data(n,T): # n=number of walkers, T= temperature
 
 #----------------------------------------------------------------------------
 
-T = 1000.0 # Temperature
 num_walkers = 16
-x,y,v = rand_walker_data(num_walkers,T)
+num_steps = 1000
+T = np.linspace(100,1000,num_walkers) # Temperature
+x,y,v = rand_walker_data(num_walkers,T,num_steps)
 
 for i in range(num_walkers):
 	plt.plot(x[:,i],y[:,i],'.')
 plt.show() 
 
-#----------------------------------------------------------------------------
-
+#-------------------------------------------------------------------------
