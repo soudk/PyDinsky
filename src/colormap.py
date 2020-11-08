@@ -9,6 +9,7 @@ import matplotlib as plt
 import seaborn as sns
 import numpy as np
 import get_temperature as get_t
+import random as ran
 
 
 
@@ -16,28 +17,30 @@ import get_temperature as get_t
 cold_to_mid = 5
 mid_to_warm = 15
 
+random_range = 0.1
+
 hot_pal = [
-    [1, .2, .3],
-    [1, .3, .23],
-    [1, .4, .15],
-    [1, .5, .08],
-    [1, .5, 0]
+    [1 - ran.uniform(0, random_range), .2 + ran.uniform(0, random_range), .3 + ran.uniform(0, random_range)],
+    [1 - ran.uniform(0, random_range), .3 + ran.uniform(0, random_range), .23 + ran.uniform(0, random_range)],
+    [1 - ran.uniform(0, random_range), .4 + ran.uniform(0, random_range), .15 + ran.uniform(0, random_range)],
+    [1 - ran.uniform(0, random_range), .5 + ran.uniform(0, random_range), .08 + ran.uniform(0, random_range)],
+    [1 - ran.uniform(0, random_range), .5 + ran.uniform(0, random_range), 0 + ran.uniform(0, random_range)]
     ]
 
 med_pal = [
-    [.4, 1, .6],
-    [.55, 1, .5],
-    [.7, 1, .4],
-    [.85, 1, .3],
-    [1, 1, .2]
+    [.4 + ran.uniform(0, random_range), 1 - ran.uniform(0, random_range), .6 + ran.uniform(0, random_range)],
+    [.55 + ran.uniform(0, random_range), 1 - ran.uniform(0, random_range), .5 + ran.uniform(0, random_range)],
+    [.7 + ran.uniform(0, random_range), 1 - ran.uniform(0, random_range), .4 + ran.uniform(0, random_range)],
+    [.85 - ran.uniform(0, random_range), 1 - ran.uniform(0, random_range), .3 + ran.uniform(0, random_range)],
+    [1 - ran.uniform(0, random_range), 1 - ran.uniform(0, random_range), .2 + ran.uniform(0, random_range)]
     ]
 
 cold_pal = [
-    [0, 0, .8],
-    [.15, .25, .85],
-    [.3, .5, .9],
-    [.45, .75, .95],
-    [.6, 1, 1]
+    [0 + ran.uniform(0, random_range), 0 + ran.uniform(0, random_range), .8 - ran.uniform(0, random_range)],
+    [.15 + ran.uniform(0, random_range), .25 + ran.uniform(0, random_range), .85 - ran.uniform(0, random_range)],
+    [.3 + ran.uniform(0, random_range), .5 + ran.uniform(0, random_range), .9 - ran.uniform(0, random_range)],
+    [.45 + ran.uniform(0, random_range), .75 - ran.uniform(0, random_range), .95 - ran.uniform(0, random_range)],
+    [.6 + ran.uniform(0, random_range), 1 - ran.uniform(0, random_range), 1 - ran.uniform(0, random_range)]
 ]
 
 """
@@ -46,8 +49,8 @@ med_pal = sns.color_palette()
 hot_pal = sns.color_palette()
 """
 
-def FindPalette(cold_to_mid, mid_to_warm):
-    temp = get_t.get_temperature()
+def FindPalette(cold_to_mid, mid_to_warm, temp):
+    #temp = get_t.get_temperature()
     palettes = [cold_pal, med_pal, hot_pal]
 
     if temp<cold_to_mid:
@@ -70,12 +73,17 @@ def color_assign(velocities, color_palette):
     interval = (max_velo - min_velo)/nb_color
 
     ranges = []
+    ranges.append(
+        [ min(velocities)-0.0001 ,          # Minimum bound 
+        min(velocities) + interval  ,      # Maximum bound
+        color_palette[0] ]                          # RGB Colour Code for the interval
+        )
 
-    for i in range(nb_color):
+    for i in range(nb_color - 1):
         ranges.append(
-            [ min(velocities) + interval * i ,          # Minimum bound 
-            min(velocities) + interval * (i + 1) ,      # Maximum bound
-            color_palette[i] ]                          # RGB Colour Code for the interval
+            [ min(velocities) + interval * (i + 1) ,          # Minimum bound 
+            min(velocities) + interval * (i + 2) ,      # Maximum bound
+            color_palette[(i+1)] ]                          # RGB Colour Code for the interval
             )
 
 
