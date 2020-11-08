@@ -8,7 +8,7 @@ This is a temporary script file.
 import matplotlib as plt
 import seaborn as sns
 import numpy as np
-import get_temperature as get_t
+#import get_temperature as get_t
 import random as ran
 
 
