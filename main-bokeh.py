@@ -92,12 +92,16 @@ date = today.strftime("%B %d, %Y")
 #WALKERS
 num_walkers = 1
 num_steps = 1000
-n_grid = num_steps*10
+n_grid = 100
 CityName = "Yellowknife"
 Country = "Canada"
 T = [gt.get_temperature(CityName, Country)]
-x,y,v = rw.rand_walker_data(n_grid,T,num_steps,num_walkers)
-x,y,v = rw.rand_walker_data(n_grid, T,num_steps,num_walkers)
+positions = []
+for i in range(num_walkers):
+        positions.append([int(np.random.rand()*100),int(np.random.rand()*100)])
+positions = np.asanyarray(positions)
+x,y,v,tmap = rw.rand_walker_data(n_grid,T,num_steps,num_walkers,positions)
+
 
 plot = figure(title = "A Random Walk: "+CityName+", "+ Country +" on "+ date +" , "+str(round(T[0]-273.15, 1))+" "+chr(176)+"C", x_axis_label = "X Position", y_axis_label = "Y Position")
 
