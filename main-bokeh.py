@@ -61,7 +61,7 @@ color_list = cm.color_assign(v[:,0], cm.FindPalette(T[0]))
 plot.line(x[:,0], y[:,0], color = 'grey', line_alpha = 0.2) #colour here should be the average colour
 plot.circle(0, 0, size=0.00000001, color= "#ffffff", legend="Cities & Temperatures") #for the legend title
 plot.scatter(x[:,0], y[:,0], size=size, color=color_list, fill_alpha = 0.3, legend_label=CityName+": "+str(T_cel)+chr(176)+"C")
-
+plot.legend.click_policy="hide"
 
 # HANDLE BOKEH CALLBACKS ... 
 
