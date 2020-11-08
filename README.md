@@ -11,7 +11,7 @@ We're creating generative art with user input and elements of randomness. Our na
 "What is up with that painting?", you might have heard, or "My three-year-old nephew could have painted this rubbish." This perspective misses a key aspect of art: what emotions do you feel when looking at a piece? Kandinsky argued that abstract art could be equally emotionally impactful as more representative works. He drew comparisons to other art forms, such as music, to argue that simple colors arranged in non-representative ways could move the viewer. Fortunately, paradigm shift has promoted the creation of abstract pieces all over the world, in a diverse and inclusive way. PyDinsky is our modest attempt to be part of this movement and hopefully, you, the viewer, will be moved by what you see here. 
 
 ## The Concept
-Heat diffusion is familiar to all: temperature fluctuations and movement are part of our everyday experience. Random walks are inherently linked to temperature and diffusion, but are **not** a concept trivially known to all. Our project aims to artistically represent these random walks, using the earth as a stage. The random walk trajectories are based on the live local temperatures in different cities worldwide.
+The phenomena of heat diffusion is somewhat familiar to all. Indeed temperature fluctuations and "movement" is part of our everyday experience. A phenomena inheretly linked to temperature and diffusion is that of random walks. This is NOT a concept trivially known to all. With our project, we chose to represent artistically those aforementioned random walks on the stage of the earth. Their trajectories are based on the live local temperatures at different cities in the world. 
 
 ## The "Physics"
 The Physics of our project is based around the velocity for a given temperature following Boltzmann distribution. Every image you generate will be different because we implement random walk methods that follow this **Boltzmann distribution** and are seeded with actual temperature from a given city.
@@ -23,7 +23,7 @@ The Physics of our project is based around the velocity for a given temperature 
 Random variables are sampled from this distribution, with the step size at each iteration depending on the temperature of the city. 
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/soudk/PyDinsky/blob/main/temp_map.png">
+  <img width="460" height="400" src="https://github.com/soudk/PyDinsky/blob/main/temp_map.png">
 </p>
 
 Additionally, we implement a routine to approximately extrapolate temperatures over the entire x-y range to obtain temperature at each position on the walk and use this to modify the distribution during run. We then plot the trace of the walkers using a custom-designed color scheme that accords with the given temperature ranges.
