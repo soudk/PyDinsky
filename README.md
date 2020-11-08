@@ -35,11 +35,12 @@ The color schemes used for the walkers are generated using the current temperatu
 
 we used the [Bokeh](https://bokeh.org/) python package to generate an interactive web app. You can pick from a list of cities and the weather API is queried for the current temperature. The website is the deployed using [Heroku](https://dashboard.heroku.com/). You can now add as many cities as you like!
 
-On average walkers from hotter cities are more likely to spread out over a wider area due to the wider Boltzmann distribution of velocities. The cities longitude and latitude are projected onto the X-Y plane, and this is where the walker begins. Walkers that hit the boundary walls are reflected to allow for a densely populated figure. 
+## The web app
 
-You can choose which cities to display, and we will query their live temperature as the seed for the art. Click on the legend to show/hide cities and build your art. Each plot generated is unique to your mouse clicks, subject to the current global weather patterns. Have fun!   
+On average walkers from hotter cities are more likely to spread out over a wider area due to the wider Boltzmann distribution of velocities. Each input city's longitude and latitude are projected onto the X-Y plane, and this is where the walker begins. Walkers that hit the boundary walls are reflected to allow for a densely populated figure. On average walkers from hotter cities are more likely to spread out over a wider area due to the wider Boltzmann distribution of velocities.
 
-## Try It Out
+You can choose which cities to display and we will query their live temperature as the seed for the art. Click on the legend to show/hide cities and build your ideal *aesthetic*. Each plot generated is unique to your mouse clicks, and subject to current global weather patterns. Have fun!   
+
 Check out the web app <a href="https://pydinsky.herokuapp.com/main-bokeh" target="_blank">here</a>. 
 
 <p align="center">
