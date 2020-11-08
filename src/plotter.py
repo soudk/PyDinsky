@@ -1,7 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import colormap as cm
+
+import os
+os.chdir('..') 
 import random_walkers as rw
+
 
 x_data, y_data, velocities = rw.rand_walker_data(4, 100)
 print(x_data[:, 0])
