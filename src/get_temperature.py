@@ -21,10 +21,14 @@ def get_temperature(city, country):
     country_ISO = country_converter.convert(country, to='ISO2')
 
     # get city id
-    city_id = get_city_id(city, country_ISO)
+    try:
+        city_id = get_city_id(city, country_ISO)
 
-    # pull temperature, given city_id
-    data = requests.get(f'https://api.openweathermap.org/data/2.5/weather?id={city_id}&appid={api_key}&units=metric')
+        # pull temperature, given city_id
+        data = requests.get(f'https://api.openweathermap.org/data/2.5/weather?id={city_id}&appid={api_key}&units=metric')
+    except:
+        data = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city},{country_ISO}&appid={api_key}&units=metric')
+
     contents = data.json()
     temperature = contents['main']['temp']
 
@@ -40,3 +44,15 @@ def get_city_id(city, country):
     # return city id
     return city_listing['id']
 
+def main():
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('city')
+    parser.add_argument('country')
+
+    args = parser.parse_args()
+
+    print(get_temperature(args.city, args.country))
+
+if __name__ == '__main__':
+    main()
