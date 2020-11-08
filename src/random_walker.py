@@ -97,7 +97,6 @@ positions = []
 for i in range(num_walkers):
 	positions.append([int(np.random.rand()*100),int(np.random.rand()*100)])
 positions = np.asanyarray(positions)
-
 x,y,v,tmap = rand_walker_data(n_grid,T,num_steps,num_walkers,positions)
 
 #for i in range(num_walkers):

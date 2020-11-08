@@ -14,8 +14,8 @@ import random as ran
 
 
 #temperature range limits
-cold_to_mid = 5
-mid_to_warm = 15
+cold_to_mid = 278.15
+mid_to_warm = 293.15
 
 random_range = 0.1
 
@@ -49,7 +49,7 @@ med_pal = sns.color_palette()
 hot_pal = sns.color_palette()
 """
 
-def FindPalette(cold_to_mid, mid_to_warm, temp):
+def FindPalette(temp):
     #temp = get_t.get_temperature()
     palettes = [cold_pal, med_pal, hot_pal]
 

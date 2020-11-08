@@ -1,2 +1,4 @@
 bokeh-example/
 pydinsky/
+*.pyc
+src/__pycache__/
