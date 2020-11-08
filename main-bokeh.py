@@ -2,7 +2,6 @@ from bokeh.plotting import figure, curdoc, show
 from bokeh.layouts import column
 from bokeh.models import ColumnDataSource, Select
 from bokeh.palettes import magma  #actually going to use cutom pallete
-import random #nto needed once random walker is working
 import numpy as np
 from datetime import date
 
