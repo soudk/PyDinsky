@@ -51,20 +51,20 @@ for d in data:
         cities.append(d["name"])
 
 # CREATE DROPDOWN WIDGET
-select_city = Select(title = "city", options = cities, value = None)
+select_city_1 = Select(title = "city", options = cities, value = None)
+select_city_2 = Select(title = "city", options = cities, value = None)
+select_city_3 = Select(title = "city", options = cities, value = None)
+select_city_4 = Select(title = "city", options = cities, value = None)
 
-# ATTACH UPDATE_ZIP1 CALLBACK TO 'VALUE' PROPERTY OF SELECT_ZIP1
-select_city.on_change('value', update_city)
+select_city_1.on_change('value', update_city)
+select_city_2.on_change('value', update_city)
+select_city_3.on_change('value', update_city)
+select_city_4.on_change('value', update_city)
 
 
 CityName = "Montreal" #replace this with input from temperature / dropdown box
-
 today = date.today()
-
 date = today.strftime("%B %d, %Y")
-
-#Plot area 
-plot = figure(title = "A Random Walk through "+CityName+" on "+ date, x_axis_label = "X Position", y_axis_label = "Y Position")
 
 #WALKERS
 #num_walkers = 1
@@ -87,16 +87,20 @@ plot = figure(title = "A Random Walk through "+CityName+" on "+ date, x_axis_lab
 num_walkers = 1
 num_steps = 1000
 n_grid = num_steps*10
-T = [gt.get_temperature("Yellowknife", "Canada")]
+CityName = "Yellowknife"
+Country = "Canada"
+T = [gt.get_temperature(CityName, Country)]
 x,y,v = rw.rand_walker_data(n_grid,T,num_steps,num_walkers)
+
+plot = figure(title = "A Random Walk through "+CityName+", "+ Country +" on "+ date +" , "+str(round(T[0]-273.15, 1))+" "+chr(176)+"C", x_axis_label = "X Position", y_axis_label = "Y Position")
 
 #PLOTTING
 size = 10
-color_list = cm.color_assign(v[:,0], cm.FindPalette(5, 15, T[0]))
+color_list = cm.color_assign(v[:,0], cm.FindPalette(T[0]))
 plot.line(x[:,0], y[:,0], color = 'grey', line_alpha = 0.2) #colour here should be the average colour
 plot.scatter(x[:,0], y[:,0], size=size, color=color_list, fill_alpha = 0.7)
 
 
 
 # FORMAT/CREATE THE DOCUMENT TO RENDER
-curdoc().add_root(column(plot, select_city, select_city))
+curdoc().add_root(column(select_city_1, select_city_2, select_city_3, select_city_4, plot))
