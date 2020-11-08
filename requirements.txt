@@ -2,3 +2,4 @@ numpy
 matplotlib
 bokeh
 country_converter
+requests
