@@ -5,4 +5,6 @@ Web app available at: https://pydinsky.herokuapp.com/main-bokeh
 
 Welcome to the paartyyy
 
-![](animation1.gif)
+![](animation1.gif)![party time](https://github.com/soudk/PyDinskly/blob/main/data/animation1.gif?raw=true)
+
+
