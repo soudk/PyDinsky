@@ -39,14 +39,21 @@ for i in range(num_walkers):
         alpha= 0.5)
 
 plt.tick_params(
-    axis='both', 
-    which='both', 
-    bottom='off', 
-    top='off', 
-    labelbottom='off', 
-    right='off', 
-    left='off', 
-    labelleft='off')
+    axis='x',          # changes apply to the x-axis
+    which='both',      # both major and minor ticks are affected
+    bottom=False,      # ticks along the bottom edge are off
+    top=False,         # ticks along the top edge are off
+    labelbottom=False) # labels along the bottom edge are off
+
+plt.tick_params(
+    axis='y',          # changes apply to the x-axis
+    which='both',      # both major and minor ticks are affected
+    bottom=False,      # ticks along the bottom edge are off
+    top=False,         # ticks along the top edge are off
+    right=False,
+    left = False,
+    labelbottom=False,
+    labelleft = False) # labels along the bottom edge are off
 ax = plt.gca()
 
 ax.set_facecolor('xkcd:grey')
