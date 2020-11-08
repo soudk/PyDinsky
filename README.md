@@ -17,7 +17,7 @@ Random variables are sampled from this distribution that depends on the temperat
 
 ![alt text](https://github.com/soudk/PyDinsky/blob/main/temp_map.png)
 
-In addition to this, we also implement a routine to approxiamtely extrapolate temperatures over the entire x-y range to obtain temperature for each position to modify the distribution during run. We then plot the trace of walkers using a custom designed color scheme that matches the given temperature ranges.
+In addition to this, we also implement a routine to approximately extrapolate temperatures over the entire x-y range to obtain temperature for each position and us this to modify the distribution during run. We then plot the trace of walkers using a custom designed color scheme that matches the given temperature ranges.
 
 
 ## Use your favorite cities to generate images
