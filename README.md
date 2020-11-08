@@ -5,4 +5,4 @@ Web app available at: https://pydinsky.herokuapp.com/main-bokeh
 
 Welcome to the paartyyy
 
-![](data/animation1.gif)
+![](animation1.gif)

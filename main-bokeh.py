@@ -2,6 +2,8 @@ from bokeh.plotting import figure, curdoc, show
 from bokeh.layouts import column
 from bokeh.models import ColumnDataSource, Select
 from bokeh.palettes import magma  #actually going to use cutom pallete
+from bokeh.themes import built_in_themes
+
 import numpy as np
 from datetime import date
 import json
@@ -12,6 +14,10 @@ sys.path.append('./src/')
 import colormap as cm
 import random_walker as rw
 import get_temperature as gt
+
+#DARK MODE (SICK - DISGUSTING)
+#curdoc().theme = 'dark_minimal'
+
 
 # GENERATE STARTING GRAPHS
 
@@ -91,8 +97,9 @@ CityName = "Yellowknife"
 Country = "Canada"
 T = [gt.get_temperature(CityName, Country)]
 x,y,v = rw.rand_walker_data(n_grid,T,num_steps,num_walkers)
+x,y,v = rw.rand_walker_data(n_grid, T,num_steps,num_walkers)
 
-plot = figure(title = "A Random Walk through "+CityName+", "+ Country +" on "+ date +" , "+str(round(T[0]-273.15, 1))+" "+chr(176)+"C", x_axis_label = "X Position", y_axis_label = "Y Position")
+plot = figure(title = "A Random Walk: "+CityName+", "+ Country +" on "+ date +" , "+str(round(T[0]-273.15, 1))+" "+chr(176)+"C", x_axis_label = "X Position", y_axis_label = "Y Position")
 
 #PLOTTING
 size = 10
